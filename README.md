@@ -27,7 +27,7 @@ $ npm run prod
 
 
 # Project structure
-
+```sh
 .
 ├── client
 │   ├── envSettings.json
@@ -74,3 +74,4 @@ $ npm run prod
     ├── package-lock.json
     └── schema
         └── schema.js
+```
