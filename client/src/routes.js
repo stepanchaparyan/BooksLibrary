@@ -15,7 +15,6 @@ class Routes extends Component {
             {/* <Route path='/signup' component={SignUp} /> */}
             {/* <Route path='/forgotPassword' component={ForgotPassword} /> */}
             <Route exact path='/books' component={Books} />
-            {/* <Route exact path='/shops/:id' component={ShopDetails} /> */}
             {/* <Route path='*' component={PageNotFound} /> */}
           </Switch>
         </div>
