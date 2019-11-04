@@ -25,7 +25,8 @@
         "react"
     ],
     "rules": {
-        "no-console": 1,
-        "quotes": [1, "single"]
+        "no-console": 0,
+        // "quotes": [1, "single"],
+        "no-trailing-spaces": 1
     }
 }

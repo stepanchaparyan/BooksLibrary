@@ -10,7 +10,7 @@ class AuthorDetails extends Component {
             return(
                 <div>
                     <h2>{ author.name }</h2>
-                    <p>{ author.age }</p>                    
+                    <p>{ author.age }</p>
                 </div>
             );
         } else {

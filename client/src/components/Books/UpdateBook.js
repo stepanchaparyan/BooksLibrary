@@ -41,7 +41,6 @@ class UpdateBook extends Component {
                 name: this.state.name,
                 genre: this.state.genre,
                 authorId: this.state.authorId
-                
             },
             refetchQueries: [{ query: getBooksQuery }]
         });

@@ -1,11 +1,10 @@
-// @import 'bootstrap/dist/css/bootstrap.css';
-
-// @import './stylesheets/navbar.scss';
-
+@import './stylesheets/navbar.scss';
+@import './stylesheets/imagesCarousel.scss';
 
 body {
     font-family: 'Nunito SemiBold';
     margin: 0;
+    padding: 0;
 }
 
 #main {

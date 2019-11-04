@@ -1,7 +1,31 @@
-.navbar1 {
-    background-color: lightgray;
+.nav-bar {
+    display: flex;
+    justify-content: space-around;
+    height: 50px;
+    background-color: rgb(148, 14, 85);    
+    color: white;
+    font-size: 14px;
+    .nav-bar__logo {
+        align-self: center;
+        height: 20px;
+        width: 130px;   
+    }
+    .nav-bar__links-container {
+        display: flex;
+        .nav-bar__links {
+            background-color: rgb(148, 14, 85);
+            font-size: 18px;
+            align-self: center;
+            margin: 0 20px;
+            box-shadow: none;
+        }
+        .nav-bar__links:hover {
+            background-color: rgb(148, 14, 85);
+            color: lightgray;
+        }
+    }
 }
 
-.nav1 {
-    background-color: beige;
-}
+
+
+

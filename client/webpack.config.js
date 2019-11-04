@@ -55,7 +55,8 @@ const common = {
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            template: path.resolve('./public/index.html')
+            template: path.resolve('./public/index.html'),
+            favicon: path.resolve('./public/favicon.ico')
         }),
         new webpack.optimize.OccurrenceOrderPlugin()    
     ]
@@ -65,16 +66,9 @@ const productionConfig = {
     mode: 'production',
     optimization: {
         minimizer: [new UglifyJsPlugin({
-            uglifyOptions: {
-                warnings: false,
-                parse: {},
+            uglifyOptions: {               
                 compress: {},
-                mangle: true,
-                output: null,
-                toplevel: false,
-                nameCache: null,
-                ie8: false,
-                keep_fnames: false,
+                mangle: true                
             },
           }),
         ],
@@ -84,16 +78,15 @@ const productionConfig = {
 const developmentConfig = {
     mode: 'development',
     devServer: {
-        stats: 'verbose',
+        stats: 'errors-warnings',
         overlay: {
             errors: true,
             warnings: true
         },
         port: envSettings.port,
         historyApiFallback: true,
-    },
-    watch: true,
-    devtool: 'eval'
+        contentBase: './src',
+    }
 };
 
 module.exports = function () {
