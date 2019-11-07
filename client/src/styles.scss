@@ -1,5 +1,6 @@
 @import './stylesheets/navbar.scss';
 @import './stylesheets/imagesCarousel.scss';
+@import './stylesheets/authors.scss';
 
 body {
     font-family: 'Nunito SemiBold';
@@ -24,12 +25,6 @@ body {
     /* flex-direction: column; */
     justify-content: center;
     /* width: 50%; */
-}
-
-.authors-container {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
 }
 
 .book-list, #author-list {

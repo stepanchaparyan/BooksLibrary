@@ -1,40 +1,37 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { graphql } from 'react-apollo';
 import {getAuthorsQuery, getBooksQuery } from '../../queries/queries';
 import PropTypes from 'prop-types';
-
-// components
-// import BookDetails from '../Books/BookDetails';
-import AuthorDetails from './AuthorDetails';
+import { AuthorCard } from './AuthorCard';
 
 class AuthorList extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            selected: null
-        }
-    }
+
     displayAuthors(){
-        var data = this.props.data;
-        // console.log('AuthorList ', this.props);
+        const data = this.props.data;
         if(data.loading){
             return( <div>Loading authors...</div> );
         } else {
             return data.authors.map(author => {
                 return(
-                    <li key={ author.id } onClick={ () => this.setState({ selected: author.id }) }>{ author.name }</li>
+                    <AuthorCard
+                        author={author}
+                        key={ author.id }
+                    />
                 );
             })
         }
     }
     render(){
         return(
-            <div>
-                <ul id="author-list">
-                    { this.displayAuthors() }
-                </ul>
-                <AuthorDetails authorId={this.state.selected} />
-            </div>
+            <Fragment>
+                <div className="author-list__container">
+                    <div className="author-list__content">
+                        <ul className="author-list">
+                           { this.displayAuthors() }
+                        </ul>
+                    </div>
+                </div>
+            </Fragment>
         );
     }
 }

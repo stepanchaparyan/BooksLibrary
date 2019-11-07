@@ -28,16 +28,16 @@ const common = {
                 test: /\.s(a|c)ss$/i,
                 use: [ 'style-loader', 'css-loader', 'sass-loader' ]
             },
-            {
-                test: /\.(eot|woff|woff2|ttf|svg|png|jpe?g|gif|ico)(\?\S*)?$/,
-                exclude: /node_modules/,
-                loader: 'file-loader',
-                options: {
-                    name: '[name].[ext]',
-                    outputPath: '/images/',
-                    publicPath: '/src/assets/'
-                }
-            },
+            // {
+            //     test: /\.(eot|woff|woff2|ttf|svg|png|jpe?g|gif|ico)(\?\S*)?$/,
+            //     exclude: /node_modules/,
+            //     loader: 'file-loader',
+            //     options: {
+            //         name: '[name].[ext]',
+            //         outputPath: '/images/',
+            //         publicPath: '/src/assets/'
+            //     }
+            // },
             {
                 test: /.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot|ico)$/,
                 use: 'url-loader?limit=100000'

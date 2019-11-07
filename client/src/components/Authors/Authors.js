@@ -7,7 +7,7 @@ class Authors extends Component {
   render() {
     return (
         <Fragment>
-            <h1>Authors</h1>
+            <div className="author-title">AUTHORS</div>
             <AuthorList />
             <AddAuthor />
             {/* <UpdateAuthor /> */}

@@ -8,6 +8,7 @@ import { navbarData } from './resources/navbarData';
 import { ImageCarousel } from './components/ImageCarousel';
 import { images } from './resources/imagesCarouselData';
 import Routes from './routes';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.scss';
 
 class App extends Component {

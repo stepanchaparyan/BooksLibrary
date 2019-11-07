@@ -15,7 +15,9 @@ class Navbar extends Component {
     })
     return (
       <div className="nav-bar">
-          <Image className='nav-bar__logo' src={ navbarData.imageSrc } alt="Logo" />
+          <a className='nav-bar__logo-container' href="/">
+            <Image className='nav-bar__logo' src={ navbarData.imageSrc } alt="Logo" />
+          </a>
           <div className="nav-bar__links-container">
             { navbarButtons }
           </div>

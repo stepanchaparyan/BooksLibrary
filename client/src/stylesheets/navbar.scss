@@ -5,11 +5,16 @@
     background-color: rgb(148, 14, 85);    
     color: white;
     font-size: 14px;
-    .nav-bar__logo {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    .nav-bar__logo-container {
         align-self: center;
+        .nav-bar__logo {
         height: 20px;
         width: 130px;   
-    }
+        }
+    }    
     .nav-bar__links-container {
         display: flex;
         .nav-bar__links {
