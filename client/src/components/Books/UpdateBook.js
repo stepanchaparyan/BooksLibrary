@@ -13,6 +13,13 @@ class UpdateBook extends Component {
             id: ''
         };
     }
+
+    static propTypes = {
+        updateBookMutation: PropTypes.any,
+        getAuthorsQuery: PropTypes.any,
+        getBooksQuery: PropTypes.any
+    }
+
     displayAuthors(){
         var data = this.props.getAuthorsQuery;
         if(data.loading){
@@ -77,12 +84,6 @@ class UpdateBook extends Component {
             </form>
         );
     }
-}
-
-UpdateBook.propTypes = {
-    updateBookMutation: PropTypes.any,
-    getAuthorsQuery: PropTypes.any,
-    getBooksQuery: PropTypes.any
 }
 
 export default compose(

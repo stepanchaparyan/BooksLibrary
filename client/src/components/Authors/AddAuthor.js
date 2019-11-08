@@ -11,6 +11,11 @@ class AddAuthor extends Component {
             age: ''
         };
     }
+
+    static propTypes = {
+        addAuthorMutation: PropTypes.any
+    }
+
     submitForm(e){
         e.preventDefault()
         this.props.addAuthorMutation({
@@ -23,24 +28,20 @@ class AddAuthor extends Component {
     }
     render(){
         return(
-            <form id="add-book" onSubmit={ this.submitForm.bind(this) } >
-                <h2>Add Author</h2>
-                <div className="field">
-                    <label>Author name:</label>
-                    <input type="text" onChange={ (e) => this.setState({ name: e.target.value }) } />
+            <form className="add-author" onSubmit={ this.submitForm.bind(this) } >
+                <div className="add-author__title">Add Author</div>
+                <div className="add-author__name">
+                    <label className="add-author__label">Author name:</label>
+                    <input className="add-author__input" type="text" onChange={ (e) => this.setState({ name: e.target.value }) } />
                 </div>
-                <div className="field">
-                    <label>Author age:</label>
-                    <input type="text" onChange={ (e) => this.setState({ age: e.target.value }) } />
+                <div className="add-author__age">
+                    <label className="add-author__label">Author age:</label>
+                    <input className="add-author__input" type="text" onChange={ (e) => this.setState({ age: e.target.value }) } />
                 </div>
-                <button id="plusBtn">Add author</button>
+                <button className="add-author__button">Add author</button>
             </form>
         );
     }
-}
-
-AddAuthor.propTypes = {
-    addAuthorMutation: PropTypes.any
 }
 
 export default compose(

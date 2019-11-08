@@ -15,15 +15,17 @@ class AuthorDetails extends Component {
         if(author){
             return(
                 <div className="author-details__container">
-                    <div className="author-details__name">{ author.name }</div>
-                    <hr />
-                    <div className="author-details__books">{ author.books.map((book, id) => {
-                        return <div className="author-details__book-data" key={id}>
-                                    <div className="author-details__book-title"><span className="author-details__book-title_span">Title:</span>{book.name}</div>
-                                    <div className="author-details__book-genre"><span className="author-details__book-title_span">Genre:</span>{book.genre}</div>
-                                </div>
-                        })
-                    }
+                    <div className="author-details">
+                        <div className="author-details__name">{ author.name }</div>
+                        <hr />
+                        <div className="author-details__books">{ author.books.map((book, id) => {
+                            return <div className="author-details__book-data" key={id}>
+                                        <div className="author-details__book-title"><span className="author-details__book-title_span">Title:</span>{book.name}</div>
+                                        <div className="author-details__book-genre"><span className="author-details__book-title_span">Genre:</span>{book.genre}</div>
+                                    </div>
+                            })
+                        }
+                        </div>
                     </div>
                 </div>
             );

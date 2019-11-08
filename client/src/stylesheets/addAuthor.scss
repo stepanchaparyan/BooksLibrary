@@ -1,0 +1,62 @@
+.add-author {
+    background: rgb(158, 117, 138);
+    padding: 5px 20px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin: 15px 15px 15px 30px;
+    border-radius: 4px;
+}
+
+.add-author__title {
+    text-align: center;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.add-author__name, .add-author__age {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+
+.add-author__label {
+    align-self: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: cornsilk;
+}
+
+.add-author__input {
+    margin: 4px 0;
+    padding-left: 6px;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+.add-author__button {
+    color: #fff;
+    background: #AD1457;
+    cursor: pointer;
+    align-self: flex-end;
+    width: 100%;
+    height: 32px;
+    font-size: 18px;
+    font-weight: bold;
+    border: 0;
+    border-radius: 4px;
+    margin-top: 67px;
+}
+
+.add-author__button:hover {
+    background: rgb(179, 77, 119);
+}
+
+.add-author__button:focus-within {
+    outline: none;
+}
+
+.add-author__button:active {
+    color: black;
+}

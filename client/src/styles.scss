@@ -1,6 +1,9 @@
 @import './stylesheets/navbar.scss';
 @import './stylesheets/imagesCarousel.scss';
-@import './stylesheets/authors.scss';
+@import './stylesheets/authorsList.scss';
+@import './stylesheets/authorDetails.scss';
+@import './stylesheets/addAuthor.scss';
+@import './stylesheets/updateAuthor.scss';
 
 body {
     font-family: 'Nunito SemiBold';
@@ -55,51 +58,4 @@ h1 {
 h2 {
     text-align: center;
     margin-top: 0;
-}
-
-form {
-    background: rgb(158, 117, 138);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    width: 380px;
-    margin: 5px 15px;
-    border-radius: 4px;
-}
-
-form .field {
-    display: flex;
-    justify-content: space-between;
-}
-
-form label {
-    text-align: right;
-    padding: 6px;
-}
-
-form input, form select {
-    margin: 4px 0;
-    padding: 6px;
-    box-sizing: border-box;
-    border-radius: 4px;
-}
-
-form select {
-    color: #880E4F;
-    width: 193px;
-}
-
-#plusBtn {
-    color: #fff;
-    font-size: 2em;
-    background: #AD1457;
-    border: 0;
-    cursor: pointer;
-    align-self: flex-end;
-    width: 193px;
-    height: 32px;
-    font-size: 15px;
-    font-weight: bold;
-    color: black;
-    border-radius: 4px;
 }

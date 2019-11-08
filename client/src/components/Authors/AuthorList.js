@@ -26,6 +26,7 @@ class AuthorList extends Component {
             <Fragment>
                 <div className="author-list__container">
                     <div className="author-list__content">
+                        <div className="author-title">AUTHORS</div>
                         <ul className="author-list">
                            { this.displayAuthors() }
                         </ul>
