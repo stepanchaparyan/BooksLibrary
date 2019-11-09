@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Button, Image } from 'react-components';
+import { Image } from 'react-components';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class Navbar extends Component {
   static propTypes = {
@@ -11,7 +12,7 @@ class Navbar extends Component {
     const { navbarData } = this.props;
 
     const navbarButtons = navbarData.links.map( (link, i) => {
-      return <Button href={ link.href } className={ link.className } key={ i }>{ link.title }</Button>
+      return <Link to={ link.href } className={ link.className } key={ i }>{ link.title }</Link>
     })
     return (
       <div className="nav-bar">

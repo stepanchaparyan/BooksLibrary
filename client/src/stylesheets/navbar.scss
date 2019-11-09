@@ -11,14 +11,15 @@
     .nav-bar__logo-container {
         align-self: center;
         .nav-bar__logo {
-        height: 20px;
-        width: 130px;   
+            height: 20px;
+            width: 130px;
         }
     }    
     .nav-bar__links-container {
         display: flex;
         .nav-bar__links {
             background-color: rgb(148, 14, 85);
+            color: white;
             font-size: 18px;
             align-self: center;
             margin: 0 20px;
@@ -26,7 +27,8 @@
         }
         .nav-bar__links:hover {
             background-color: rgb(148, 14, 85);
-            color: lightgray;
+            color: gray;
+            text-decoration: none;
         }
     }
 }
