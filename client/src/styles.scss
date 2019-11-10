@@ -4,58 +4,12 @@
 @import './stylesheets/authorDetails.scss';
 @import './stylesheets/addAuthor.scss';
 @import './stylesheets/updateAuthor.scss';
+@import './stylesheets/booksList.scss';
+@import './stylesheets/bookDetails.scss';
+@import './stylesheets/pageNotFound.scss';
 
 body {
     font-family: 'Nunito SemiBold';
     margin: 0;
     padding: 0;
-}
-
-#main {
-    display: flex;
-    padding-top: 10px;
-    justify-content: space-around;
-}
-
-.books-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.book-list-container {
-    display: flex;
-    /* flex-direction: column; */
-    justify-content: center;
-    /* width: 50%; */
-}
-
-.book-list, #author-list {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 0 5px;
-    margin: 10px 35px 5px 20px;
-    border: 1px solid #880E4F;
-    border-radius: 2px;
-}
-
-.book-list li, #author-list li {
-    display: flex;
-    margin: 6px;
-    padding: 8px;
-    border-radius: 4px;
-    border: 1px solid #880E4F;
-    cursor: pointer;
-    color: #880E4F;
-}
-
-h1 {
-    text-align: center;
-    margin: 0;
-    color: #880E4F;
-}
-
-h2 {
-    text-align: center;
-    margin-top: 0;
 }

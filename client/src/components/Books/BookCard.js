@@ -1,76 +1,30 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import userImage from '../../assets/user.jpeg';
+import { Link } from 'react-router-dom';
 
 class BookCard extends Component {
-    // constructor(props){
-    //     super(props);
-    //     this.state = {
-    //         selected: null
-    //     }
-    // }
 
-    // deleteBook = (bookId) => {
-    //     this.props.deleteBookMutation({
-    //         variables: {
-    //             id: bookId
-    //         },
-    //         refetchQueries: [{ query: getBooksQuery }]
-    //     });
-    // }
-
-    //   displayBooks(){
-    //     var data = this.props.data;
-    //     // console.log('Booklist ', this.props);
-    //     if(data.loading){
-    //         return( <div>Loading books...</div> );
-    //     } else {
-    //         return data.books.map(book => {
-    //             return(
-    //                 <div>
-    //                     <BookCard books={data} />
-    //                 </div>
-    //                 <li key={ book.id } onClick={ () => this.deleteBook(book.id) }>{ book.name }</li>
-    //             );
-    //         })
-    //     }
-    // }
-        displayBooks(){
-            const data = this.props;
-            console.log('Booklist ', this.props);
-            // if(data.loading){
-            //     return( <div>Loading books...</div> );
-            // } else {
-                return data.books.map((book, index) => {
-                    return <BookCard books={book} deleteBook={this.deleteBook} key={index}/>;
-                })
-            // }
-        }
+    static propTypes = {
+        book: PropTypes.any,
+        onClick: PropTypes.any
+    }
 
     render(){
-        // console.log("card ", this.props.book.name)
+        const { book } = this.props;
         return(
-            <div className="book-list-container">
-                {/* <ul className="book-list">
-                    { this.displayBooks() }
-                </ul> */}
-                {/* <BookDetails bookId={ this.state.selected } /> */}
-                {/* {this.props.books.map((book, i) => { */}
-                {/* return( <div key={i}> */}
-                         {/* {this.props.books} */}
-                         { this.displayBooks() }
-                         {/* {this.props.book.id} */}
-                        {/* </div> */}
-                {/* // )} */}
-                {/* // ) */}
-                {/* // } */}
+            <div className="book-card">
+                <div className="book-card__image-div">
+                    <img className="book-card__image" src={userImage} alt="image"/>
+                </div>
+                <div className="book-card__body">
+                    <div className="book-card__name" onClick={ this.props.onClick }>Name: {book.name}</div>
+                    <div className="book-card__genre">Genre: {book.genre}</div>
+                    <div className="book-card__author"><Link to={'/book/' + book.id} >Author data here</Link></div>
+                </div>
             </div>
         );
     }
-}
-
-BookCard.propTypes = {
-    books: PropTypes.any,
-    // deleteBookMutation: PropTypes.any
 }
 
 export { BookCard };

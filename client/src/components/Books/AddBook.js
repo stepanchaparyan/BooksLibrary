@@ -13,7 +13,7 @@ class AddBook extends Component {
         };
     }
     displayAuthors(){
-        var data = this.props.getAuthorsQuery;
+        const data = this.props.getAuthorsQuery;
         if(data.loading){
             return( <option disabled>Loading authors</option> );
         } else {

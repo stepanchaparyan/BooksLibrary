@@ -17,6 +17,7 @@ class AuthorDetails extends Component {
                 <div className="author-details__container">
                     <div className="author-details">
                         <div className="author-details__name">{ author.name }</div>
+                        <div className="author-details__name">Books list</div>
                         <hr />
                         <div className="author-details__books">{ author.books.map((book, id) => {
                             return <div className="author-details__book-data" key={id}>

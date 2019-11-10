@@ -2,17 +2,9 @@ import React, { Component } from 'react';
 import { graphql, compose } from 'react-apollo';
 import { getBooksQuery, deleteBookMutation } from '../../queries/queries';
 import PropTypes from 'prop-types';
-
-// components
-// import BookDetails from './BookDetails';
+import { BookCard } from './BookCard';
 
 class BookList extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            selected: null
-        }
-    }
 
     deleteBook = (bookId) => {
         this.props.deleteBookMutation({
@@ -23,26 +15,31 @@ class BookList extends Component {
         });
     }
 
-      displayBooks(){
-        var data = this.props.data;
-        // console.log('Booklist ', this.props);
+    displayBooks(){
+        const data = this.props.data;
         if(data.loading){
             return( <div>Loading books...</div> );
         } else {
             return data.books.map(book => {
                 return(
-                    <li key={ book.id } onClick={ () => this.deleteBook(book.id) }>{ book.name }</li>
+                    <BookCard
+                        book={ book }
+                        key={ book.id }
+                        onClick={ () => this.deleteBook(book.id) }
+                    />
                 );
             })
         }
     }
     render(){
         return(
-            <div className="book-list-container">
-                <ul className="book-list">
-                    { this.displayBooks() }
-                </ul>
-                {/* <BookDetails bookId={ this.state.selected } /> */}
+            <div className="book-list__container">
+                <div className="book-list__content">
+                    <div className="book-title">BOOKS</div>
+                    <ul className="book-list">
+                        { this.displayBooks() }
+                    </ul>
+                </div>
             </div>
         );
     }
@@ -50,7 +47,8 @@ class BookList extends Component {
 
 BookList.propTypes = {
     data: PropTypes.any,
-    deleteBookMutation: PropTypes.any
+    deleteBookMutation: PropTypes.any,
+
 }
 
 export default compose(

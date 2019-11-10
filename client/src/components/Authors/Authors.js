@@ -17,4 +17,4 @@ class Authors extends Component {
   }
 }
 
-export default Authors;
+export { Authors };

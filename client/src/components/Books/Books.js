@@ -1,19 +1,20 @@
-import React, { Component, Fragment } from 'react';
-import BookList from './BookList';
+import React, { Component } from 'react';
+import BooksList from './BooksList';
 import AddBook from './AddBook';
 import UpdateBook from './UpdateBook';
 
 class Books extends Component {
   render() {
     return (
-        <Fragment>
-            <h1>Books</h1>
-            <BookList />
+        <div className="books">
+          <BooksList />
+          <div className="books__update">
             <AddBook />
             <UpdateBook />
-        </Fragment>
+          </div>
+        </div>
     );
   }
 }
 
-export default Books;
+export { Books };

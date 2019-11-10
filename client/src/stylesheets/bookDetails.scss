@@ -6,12 +6,12 @@
     margin: 20px;
 }
 
-.author-details__container {
+.book-details__container {
     display: flex;
     justify-content: center;
 }
 
-.author-details {
+.book-details {
     display: flex;
     flex-direction: column;
     color: #880E4F;
@@ -20,12 +20,12 @@
     max-width: 1080px;
 }
 
-.author-details__books {
+.book-details__books {
     display: flex;
     flex-wrap: wrap;
 }
 
-.author-details__name {
+.book-details__name {
     display: flex;
     justify-content: center;
     color: #880E4F;
@@ -34,29 +34,49 @@
     margin-bottom: 20px;
 }
 
-.author-details__book-data {
+.book-details__book-data {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-self: center;
     margin: 10px;
-    width: 250px;
+    width: 350px;
     height: auto;
     background-color: rgb(207, 171, 191);
     border-radius: 5px;
-    max-width: 250px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
-.author-details__book-title, .author-details__book-genre {
+.book-details__book-title, .book-details__book-genre, .book-details__book-author__name {
     margin: 5px 30px;
 }
 
-.author-details__book-title_span {
+.book-details__book-author__name a {
+    color: #880E4F;
+}
+
+.book-details__book-author__name a:hover {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.book-details span {
     color: black;
     font-weight: bold;
     margin-right: 10px;
+}
+
+.book-details__author-books {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.book-details__author-book-data {
+    display: flex;
+    padding: 0 15px;
+    margin: 10px;
+    min-width: 250px;
+    height: auto;
+    background-color: rgb(207, 171, 191);
+    border-radius: 5px;
 }
 
 hr {
