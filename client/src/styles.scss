@@ -1,11 +1,11 @@
 @import './stylesheets/navbar.scss';
 @import './stylesheets/imagesCarousel.scss';
-@import './stylesheets/authorsList.scss';
-@import './stylesheets/authorDetails.scss';
-@import './stylesheets/addAuthor.scss';
-@import './stylesheets/updateAuthor.scss';
-@import './stylesheets/booksList.scss';
-@import './stylesheets/bookDetails.scss';
+@import './stylesheets/Authors/authorsList.scss';
+@import './stylesheets/Authors/authorDetails.scss';
+@import './stylesheets/Authors/addAuthor.scss';
+@import './stylesheets/Authors/updateAuthor.scss';
+@import './stylesheets/Books/booksList.scss';
+@import './stylesheets/Books/bookDetails.scss';
 @import './stylesheets/pageNotFound.scss';
 
 body {
