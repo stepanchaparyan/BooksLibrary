@@ -55,32 +55,31 @@ class UpdateBook extends Component {
     render(){
         // console.log(this.state)
         return(
-            <form id="update-book" onSubmit={ this.submitForm.bind(this) } >
-                <h2>Update Book</h2>
-                <div className="field">
-                    <label>Book ID:</label>
-                    <select onChange={ (e) => this.setState({ bookId: e.target.value }) } >
+            <form className="update-book" onSubmit={ this.submitForm.bind(this) } >
+                <div className="update-book__title">Update Book</div>
+                <div className="update-book__name">
+                    <label className="update-book__label">Select book:</label>
+                    <select className="update-book__select" onChange={ (e) => this.setState({ bookId: e.target.value }) } >
                         <option>Select book</option>
                         { this.displayBooks() }
                     </select>
                 </div>
-
-                <div className="field">
-                    <label>Book name:</label>
-                    <input type="text" onChange={ (e) => this.setState({ name: e.target.value }) } />
+                <div className="update-book__name">
+                    <label className="update-book__label">Book name:</label>
+                    <input className="update-book__input" type="text" onChange={ (e) => this.setState({ name: e.target.value }) } />
                 </div>
-                <div className="field">
-                    <label>Genre:</label>
-                    <input type="text" onChange={ (e) => this.setState({ genre: e.target.value }) } />
+                <div className="update-book__genre">
+                    <label className="update-book__label">Book genre:</label>
+                    <input className="update-book__input" type="text" onChange={ (e) => this.setState({ genre: e.target.value }) } />
                 </div>
-                <div className="field">
-                    <label>Author:</label>
-                    <select onChange={ (e) => this.setState({ authorId: e.target.value }) } >
+                <div className="update-book__author">
+                    <label className="update-book__label">Book author:</label>
+                    <select className="update-book__select" onChange={ (e) => this.setState({ authorId: e.target.value }) } >
                         <option>Select author</option>
                         { this.displayAuthors() }
                     </select>
                 </div>
-                <button id="plusBtn">Update book</button>
+                <button className="update-book__button">Update book</button>
             </form>
         );
     }

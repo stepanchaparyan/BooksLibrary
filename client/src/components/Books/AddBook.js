@@ -35,24 +35,24 @@ class AddBook extends Component {
     }
     render(){
         return(
-            <form id="add-book" onSubmit={ this.submitForm.bind(this) } >
-                <h2>Add Book</h2>
-                <div className="field">
-                    <label>Book name:</label>
-                    <input type="text" onChange={ (e) => this.setState({ name: e.target.value }) } />
+            <form className="add-book" onSubmit={ this.submitForm.bind(this) } >
+                <div className="add-book__title">Add Book</div>
+                <div className="add-book__name">
+                    <label className="add-book__label">Book name:</label>
+                    <input className="add-book__input" type="text" onChange={ (e) => this.setState({ name: e.target.value }) } />
                 </div>
-                <div className="field">
-                    <label>Genre:</label>
-                    <input type="text" onChange={ (e) => this.setState({ genre: e.target.value }) } />
+                <div className="add-book__genre">
+                    <label className="add-book__label">Book genre:</label>
+                    <input className="add-book__input" type="text" onChange={ (e) => this.setState({ genre: e.target.value }) } />
                 </div>
-                <div className="field">
-                    <label>Author:</label>
-                    <select onChange={ (e) => this.setState({ authorId: e.target.value }) } >
-                        <option>Select author</option>
+                <div className="add-book__author">
+                    <label className="add-book__label">Book author:</label>
+                    <select className="add-book__select" onChange={ (e) => this.setState({ authorId: e.target.value }) } >
+                        <option className="add-book__option">Select author</option>
                         { this.displayAuthors() }
                     </select>
                 </div>
-                <button id="plusBtn">Add book</button>
+                <button className="add-book__button">Add book</button>
             </form>
         );
     }
