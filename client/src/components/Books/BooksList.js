@@ -1,22 +1,15 @@
 import React, { Component } from 'react';
-import { graphql, compose } from 'react-apollo';
-import { getBooksQuery, deleteBookMutation } from '../../queries/queries';
 import PropTypes from 'prop-types';
 import { BookCard } from './BookCard';
 
 class BookList extends Component {
-
-    deleteBook = (bookId) => {
-        this.props.deleteBookMutation({
-            variables: {
-                id: bookId
-            },
-            refetchQueries: [{ query: getBooksQuery }]
-        });
+    static propTypes = {
+        data: PropTypes.any,
+        deleteBook: PropTypes.any,
     }
 
     displayBooks(){
-        const data = this.props.data;
+        const { data, deleteBook } = this.props;
         if(data.loading){
             return( <div>Loading books...</div> );
         } else {
@@ -25,7 +18,7 @@ class BookList extends Component {
                     <BookCard
                         book={ book }
                         key={ book.id }
-                        onClick={ () => this.deleteBook(book.id) }
+                        onClick={ () => deleteBook(book.id) }
                     />
                 );
             })
@@ -45,13 +38,4 @@ class BookList extends Component {
     }
 }
 
-BookList.propTypes = {
-    data: PropTypes.any,
-    deleteBookMutation: PropTypes.any,
-
-}
-
-export default compose(
-    graphql(getBooksQuery),
-    graphql(deleteBookMutation, { name: 'deleteBookMutation' })
-)(BookList);
+export default BookList;

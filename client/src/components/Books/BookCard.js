@@ -4,7 +4,6 @@ import userImage from '../../assets/user.jpeg';
 import { Link } from 'react-router-dom';
 
 class BookCard extends Component {
-
     static propTypes = {
         book: PropTypes.any,
         onClick: PropTypes.any
