@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from 'react';
-import { graphql } from 'react-apollo';
-import {getAuthorsQuery, getBooksQuery } from '../../queries/queries';
 import PropTypes from 'prop-types';
 import { AuthorCard } from './AuthorCard';
 
 class AuthorList extends Component {
+    static propTypes = {
+        data: PropTypes.any
+    }
 
     displayAuthors(){
         const data = this.props.data;
@@ -37,8 +38,4 @@ class AuthorList extends Component {
     }
 }
 
-AuthorList.propTypes = {
-    data: PropTypes.any
-}
-
-export default graphql(getAuthorsQuery, getBooksQuery)(AuthorList);
+export default AuthorList;

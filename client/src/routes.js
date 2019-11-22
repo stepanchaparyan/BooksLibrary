@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { Authors } from './components/Authors/Authors';
+import Authors from './components/Authors/Authors';
 import Books from './components/Books/Books';
 import AuthorDetails from './components/Authors/AuthorDetails';
 import BookDetails from './components/Books/BookDetails';
