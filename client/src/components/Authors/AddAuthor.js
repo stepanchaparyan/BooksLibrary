@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { graphql, compose } from 'react-apollo';
-import { getAuthorsQuery, addAuthorMutation } from '../../queries/queries';
 import PropTypes from 'prop-types';
+import { getAuthorsQuery } from '../../queries/queries';
 
 class AddAuthor extends Component {
     constructor(props){
@@ -44,7 +43,4 @@ class AddAuthor extends Component {
     }
 }
 
-export default compose(
-    graphql(getAuthorsQuery, { name: 'getAuthorsQuery' }),
-    graphql(addAuthorMutation, { name: 'addAuthorMutation' })
-)(AddAuthor);
+export default AddAuthor;

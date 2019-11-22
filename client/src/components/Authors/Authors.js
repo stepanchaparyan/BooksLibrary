@@ -2,22 +2,25 @@ import React, { Component } from 'react';
 import AuthorList from './AuthorList';
 import AddAuthor from './AddAuthor';
 import UpdateAuthor from './UpdateAuthor';
-import { graphql } from 'react-apollo';
-import {getAuthorsQuery, getBooksQuery } from '../../queries/queries';
+import { graphql, compose } from 'react-apollo';
+import { getAuthorsQuery, addAuthorMutation } from '../../queries/queries';
 import PropTypes from 'prop-types';
 
 class Authors extends Component {
   static propTypes = {
-    data: PropTypes.any
+    data: PropTypes.any,
+    addAuthorMutation: PropTypes.any,
   }
 
   render() {
-    const data = this.props.data;
+    const { data, addAuthorMutation } = this.props;
     return (
         <div className="authors">
             <AuthorList data={ data } />
             <div className="authors__update">
-              <AddAuthor />
+              <AddAuthor
+                  addAuthorMutation={ addAuthorMutation }
+              />
               <UpdateAuthor />
             </div>
         </div>
@@ -25,4 +28,7 @@ class Authors extends Component {
   }
 }
 
-export default graphql(getAuthorsQuery, getBooksQuery)(Authors);
+export default compose(
+  graphql(getAuthorsQuery),
+  graphql(addAuthorMutation, { name: "addAuthorMutation" })
+)(Authors);
