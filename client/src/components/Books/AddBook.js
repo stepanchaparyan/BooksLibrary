@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { graphql, compose } from 'react-apollo';
-import { getAuthorsQuery, addBookMutation, getBooksQuery } from '../../queries/queries';
+import { getBooksQuery } from '../../queries/queries';
 import PropTypes from 'prop-types';
 
 class AddBook extends Component {
@@ -12,6 +11,12 @@ class AddBook extends Component {
             authorId: ''
         };
     }
+
+    static propTypes = {
+        addBookMutation: PropTypes.any,
+        getAuthorsQuery: PropTypes.any,
+    }
+
     displayAuthors(){
         const data = this.props.getAuthorsQuery;
         if(data.loading){
@@ -58,12 +63,4 @@ class AddBook extends Component {
     }
 }
 
-AddBook.propTypes = {
-    getAuthorsQuery: PropTypes.any,
-    addBookMutation: PropTypes.any
-}
-
-export default compose(
-    graphql(getAuthorsQuery, { name: 'getAuthorsQuery' }),
-    graphql(addBookMutation, { name: 'addBookMutation' })
-)(AddBook);
+export default AddBook;

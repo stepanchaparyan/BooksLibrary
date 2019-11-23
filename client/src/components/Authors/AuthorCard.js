@@ -6,13 +6,12 @@ import { Link } from 'react-router-dom';
 class AuthorCard extends Component {
     static propTypes = {
         author: PropTypes.any,
-        onClick: PropTypes.any
     }
 
     render(){
         const { author } = this.props;
         return(
-            <div className="author-card" onClick={ this.props.onClick } >
+            <div className="author-card">
                 <div className="author-card__image-div">
                     <img className="author-card__image" src={userImage} alt="image"/>
                 </div>

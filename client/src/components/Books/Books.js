@@ -3,13 +3,16 @@ import BooksList from "./BooksList";
 import AddBook from "./AddBook";
 import UpdateBook from "./UpdateBook";
 import { graphql, compose } from "react-apollo";
-import { getBooksQuery, deleteBookMutation } from "../../queries/queries";
+import { getBooksQuery, getAuthorsQuery, addBookMutation, deleteBookMutation, updateBookMutation } from "../../queries/queries";
 import PropTypes from "prop-types";
 
 class Books extends Component {
   static propTypes = {
     data: PropTypes.any,
-    deleteBookMutation: PropTypes.any
+    deleteBookMutation: PropTypes.any,
+    getAuthorsQuery: PropTypes.any,
+    addBookMutation: PropTypes.any,
+    updateBookMutation: PropTypes.any,
   };
 
   deleteBook = bookId => {
@@ -22,7 +25,7 @@ class Books extends Component {
   };
 
   render() {
-    const { data } = this.props;
+    const { data, getAuthorsQuery, addBookMutation, updateBookMutation } = this.props;
     return (
       <div className="books">
         <BooksList
@@ -30,8 +33,15 @@ class Books extends Component {
             deleteBook={ this.deleteBook }
         />
         <div className="books__update">
-          <AddBook />
-          <UpdateBook />
+          <AddBook
+              addBookMutation={ addBookMutation }
+              getAuthorsQuery={ getAuthorsQuery }
+          />
+          <UpdateBook
+              data={ data }
+              updateBookMutation={ updateBookMutation }
+              getAuthorsQuery={ getAuthorsQuery }
+          />
         </div>
       </div>
     );
@@ -40,5 +50,8 @@ class Books extends Component {
 
 export default compose(
   graphql(getBooksQuery),
-  graphql(deleteBookMutation, { name: "deleteBookMutation" })
+  graphql(deleteBookMutation, { name: "deleteBookMutation" }),
+  graphql(getAuthorsQuery, { name: 'getAuthorsQuery' }),
+  graphql(addBookMutation, { name: 'addBookMutation' }),
+  graphql(updateBookMutation, { name: 'updateBookMutation' })
 )(Books);

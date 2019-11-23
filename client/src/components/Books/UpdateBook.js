@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { graphql, compose } from 'react-apollo';
-import { getAuthorsQuery, updateBookMutation, getBooksQuery } from '../../queries/queries';
+import { getBooksQuery } from '../../queries/queries';
 import PropTypes from 'prop-types';
 
 class UpdateBook extends Component {
@@ -17,11 +16,12 @@ class UpdateBook extends Component {
     static propTypes = {
         updateBookMutation: PropTypes.any,
         getAuthorsQuery: PropTypes.any,
-        getBooksQuery: PropTypes.any
+        getBooksQuery: PropTypes.any,
+        data: PropTypes.any
     }
 
     displayAuthors(){
-        var data = this.props.getAuthorsQuery;
+        const data = this.props.getAuthorsQuery;
         if(data.loading){
             return( <option disabled>Loading authors</option> );
         } else {
@@ -31,7 +31,7 @@ class UpdateBook extends Component {
         }
     }
     displayBooks(){
-        var data = this.props.getBooksQuery;
+        const { data }= this.props;
         if(data.loading){
             return( <option disabled>Loading authors</option> );
         } else {
@@ -53,7 +53,6 @@ class UpdateBook extends Component {
         });
     }
     render(){
-        // console.log(this.state)
         return(
             <form className="update-book" onSubmit={ this.submitForm.bind(this) } >
                 <div className="update-book__title">Update Book</div>
@@ -85,8 +84,4 @@ class UpdateBook extends Component {
     }
 }
 
-export default compose(
-    graphql(getAuthorsQuery, { name: 'getAuthorsQuery' }),
-    graphql(getBooksQuery, { name: 'getBooksQuery' }),
-    graphql(updateBookMutation, { name: 'updateBookMutation' })
-)(UpdateBook);
+export default UpdateBook;
