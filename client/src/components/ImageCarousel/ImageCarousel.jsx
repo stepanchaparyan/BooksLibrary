@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
 import PropTypes from 'prop-types';
+import { CarouselContainer } from './ImageCarouselStyled';
 
 class ImageCarousel extends Component {
     static propTypes = {
@@ -15,15 +16,17 @@ class ImageCarousel extends Component {
             return <img src={ image } key={ i } />
         })
         return (
-            <Carousel   className="images"
-                        infiniteLoop
-                        useKeyboardArrows
-                        autoPlay
-                        showThumbs={false}
-                        showStatus={false}
-                        dynamicHeight>
+            <CarouselContainer>
+                <Carousel
+                    infiniteLoop
+                    useKeyboardArrows
+                    autoPlay
+                    showThumbs={false}
+                    showStatus={false}
+                    dynamicHeight>
                 { imagesList }
-            </Carousel>
+                </Carousel>
+            </CarouselContainer>
         );
     }
 }

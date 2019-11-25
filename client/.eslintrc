@@ -27,6 +27,7 @@
     "rules": {
         "no-console": 0,
         // "quotes": [1, "single"],
-        "no-trailing-spaces": 1
+        "no-trailing-spaces": 1,
+        "no-unsafe-finally": 0
     }
 }

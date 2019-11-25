@@ -3,13 +3,11 @@ export const navbarData = {
     [
         {
             'title': 'Authors',
-            'href': '/',
-            'className': 'nav-bar__links'
+            'href': '/'
         },
         {
             'title': 'Books',
-            'href': '/books',
-            'className': 'nav-bar__links'
+            'href': '/books'
         }
     ],
     'imageSrc': '../assets/logo.png'
