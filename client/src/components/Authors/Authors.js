@@ -5,6 +5,7 @@ import UpdateAuthor from './UpdateAuthor';
 import { graphql, compose } from 'react-apollo';
 import { getAuthorsQuery, addAuthorMutation, updateAuthorMutation } from '../../queries/queries';
 import PropTypes from 'prop-types';
+import { AuthorsAddAndUpdateContainer } from './AuthorsStyled';
 
 class Authors extends Component {
   static propTypes = {
@@ -16,9 +17,9 @@ class Authors extends Component {
   render() {
     const { data, addAuthorMutation, updateAuthorMutation } = this.props;
     return (
-        <div className="authors">
-            <AuthorList data={ data } />
-            <div className="authors__update">
+        <>
+          <AuthorList data={ data } />
+          <AuthorsAddAndUpdateContainer>
               <AddAuthor
                   addAuthorMutation={ addAuthorMutation }
               />
@@ -26,8 +27,8 @@ class Authors extends Component {
                   updateAuthorMutation={ updateAuthorMutation }
                   data={ data }
               />
-            </div>
-        </div>
+          </AuthorsAddAndUpdateContainer>
+        </>
     );
   }
 }

@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import userImage from '../../assets/user.jpeg';
 import { Link } from 'react-router-dom';
+import { BookCardContainer,
+         BookCardImage,
+         BookCardBody,
+         BookCardName,
+         BookCardGenre
+         } from './BookCardStyled';
+import M from '../../Messages';
 
 class BookCard extends Component {
     static propTypes = {
@@ -12,16 +19,14 @@ class BookCard extends Component {
     render(){
         const { book } = this.props;
         return(
-            <div className="book-card">
-                <div className="book-card__image-div">
-                    <img className="book-card__image" src={userImage} alt="image"/>
-                </div>
-                <div className="book-card__body">
-                    <div className="book-card__name" onClick={ this.props.onClick }>Name: {book.name}</div>
-                    <div className="book-card__genre">Genre: {book.genre}</div>
-                    <div className="book-card__author"><Link to={'/book/' + book.id} >Author data here</Link></div>
-                </div>
-            </div>
+            <BookCardContainer>
+                <BookCardImage src={userImage} alt="image"/>
+                <BookCardBody className="book-card__body">
+                    <BookCardName onClick={ this.props.onClick }>{M.get('books.name')}: {book.name}</BookCardName>
+                    <BookCardGenre>{M.get('books.genre')}: {book.genre}</BookCardGenre>
+                    <Link to={'/book/' + book.id}>{M.get('books.authorDataHere')}</Link>
+                </BookCardBody>
+            </BookCardContainer>
         );
     }
 }

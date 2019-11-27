@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
 import { getBooksQuery } from '../../queries/queries';
 import PropTypes from 'prop-types';
+import { UpdateBookForm,
+         UpdateBookTitle,
+         UpdateBookName,
+         UpdateBookGenre,
+         UpdateBookAuthor,
+         UpdateBookLabel,
+         UpdateBookInput,
+         UpdateBookSelect,
+         UpdateBookButton } from './UpdateBookStyled';
+import M from '../../Messages';
 
 class UpdateBook extends Component {
     constructor(props){
@@ -54,32 +64,32 @@ class UpdateBook extends Component {
     }
     render(){
         return(
-            <form className="update-book" onSubmit={ this.submitForm.bind(this) } >
-                <div className="update-book__title">Update Book</div>
-                <div className="update-book__name">
-                    <label className="update-book__label">Select book:</label>
-                    <select className="update-book__select" onChange={ (e) => this.setState({ bookId: e.target.value }) } >
-                        <option>Select book</option>
+            <UpdateBookForm onSubmit={ this.submitForm.bind(this) } >
+                <UpdateBookTitle>{M.get('books.updateBook')}</UpdateBookTitle>
+                <UpdateBookName>
+                    <UpdateBookLabel>{M.get('books.selectBook')}:</UpdateBookLabel>
+                    <UpdateBookSelect onChange={ (e) => this.setState({ bookId: e.target.value }) } >
+                        <option>{M.get('books.selectBook')}</option>
                         { this.displayBooks() }
-                    </select>
-                </div>
-                <div className="update-book__name">
-                    <label className="update-book__label">Book name:</label>
-                    <input className="update-book__input" type="text" onChange={ (e) => this.setState({ name: e.target.value }) } />
-                </div>
-                <div className="update-book__genre">
-                    <label className="update-book__label">Book genre:</label>
-                    <input className="update-book__input" type="text" onChange={ (e) => this.setState({ genre: e.target.value }) } />
-                </div>
-                <div className="update-book__author">
-                    <label className="update-book__label">Book author:</label>
-                    <select className="update-book__select" onChange={ (e) => this.setState({ authorId: e.target.value }) } >
-                        <option>Select author</option>
+                    </UpdateBookSelect>
+                </UpdateBookName>
+                <UpdateBookName>
+                    <UpdateBookLabel>{M.get('books.bookName')}:</UpdateBookLabel>
+                    <UpdateBookInput type="text" onChange={ (e) => this.setState({ name: e.target.value }) } />
+                </UpdateBookName>
+                <UpdateBookGenre>
+                    <UpdateBookLabel>{M.get('books.bookGenre')}:</UpdateBookLabel>
+                    <UpdateBookInput type="text" onChange={ (e) => this.setState({ genre: e.target.value }) } />
+                </UpdateBookGenre>
+                <UpdateBookAuthor>
+                    <UpdateBookLabel>{M.get('books.bookAuthor')}:</UpdateBookLabel>
+                    <UpdateBookSelect onChange={ (e) => this.setState({ authorId: e.target.value }) } >
+                        <option>{M.get('books.selectAuthor')}</option>
                         { this.displayAuthors() }
-                    </select>
-                </div>
-                <button className="update-book__button">Update book</button>
-            </form>
+                    </UpdateBookSelect>
+                </UpdateBookAuthor>
+                <UpdateBookButton>{M.get('books.updateBook')}</UpdateBookButton>
+            </UpdateBookForm>
         );
     }
 }

@@ -23,6 +23,7 @@ class ImageCarousel extends Component {
                     autoPlay
                     showThumbs={false}
                     showStatus={false}
+                    showArrows={false}
                     dynamicHeight>
                 { imagesList }
                 </Carousel>

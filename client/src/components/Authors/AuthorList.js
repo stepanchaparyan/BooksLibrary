@@ -1,6 +1,12 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { AuthorCard } from './AuthorCard';
+import { AuthorsListContainer,
+         AuthorsListContent,
+         AuthorTitle,
+         AuthorsList,
+         AuthorsListLoading } from './AuthorListStyled';
+import M from '../../Messages';
 
 class AuthorList extends Component {
     static propTypes = {
@@ -10,7 +16,7 @@ class AuthorList extends Component {
     displayAuthors(){
         const data = this.props.data;
         if(data.loading){
-            return( <div>Loading authors...</div> );
+            return( <AuthorsListLoading>{M.get('authors.loadingAuthors')}</AuthorsListLoading> );
         } else {
             return data.authors.map(author => {
                 return(
@@ -24,16 +30,16 @@ class AuthorList extends Component {
     }
     render(){
         return(
-            <Fragment>
-                <div className="author-list__container">
-                    <div className="author-list__content">
-                        <div className="author-title">AUTHORS</div>
-                        <ul className="author-list">
-                           { this.displayAuthors() }
-                        </ul>
-                    </div>
-                </div>
-            </Fragment>
+            <>
+                <AuthorsListContainer>
+                    <AuthorsListContent>
+                        <AuthorTitle>{M.get('authors.authors')}</AuthorTitle>
+                        <AuthorsList>
+                            { this.displayAuthors() }
+                        </AuthorsList>
+                    </AuthorsListContent>
+                </AuthorsListContainer>
+            </>
         );
     }
 }

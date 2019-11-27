@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
 import { getAuthorsQuery } from '../../queries/queries';
 import PropTypes from 'prop-types';
+import { UpdateAuthorContainer,
+         UpdateAuthorTitle,
+         UpdateAuthorName,
+         UpdateAuthorAge,
+         UpdateAuthorSelectDiv,
+         UpdateAuthorSelect,
+         UpdateAuthorLabel,
+         UpdateAuthorInput,
+         UpdateAuthorButton
+        } from './UpdateAuthorStyled';
+import M from '../../Messages';
 
 class UpdateAuthor extends Component {
     constructor(props){
@@ -52,25 +63,25 @@ class UpdateAuthor extends Component {
 
     render(){
         return(
-            <form className="update-author" onSubmit={ this.submitForm.bind(this) } >
-                <div className="update-author__title">Update Author</div>
-                <div className="update-author__name">
-                    <label className="update-author__label">Author name:</label>
-                    <input className="update-author__input" type="text" value={ this.state.name } name='name' onChange={ (e) => this.onChange(e)} />
-                </div>
-                <div className="update-author__age">
-                    <label className="update-author__label">Author age:</label>
-                    <input className="update-author__input" type="text" value={ this.state.age } name='age' onChange={ (e) => this.onChange(e)} />
-                </div>
-                <div className="update-author__select">
-                    <label className="update-author__label">Author:</label>
-                    <select className="update-author__select" name='id' onChange={ (e) => this.onChange(e)} >
-                        <option>Select author</option>
+            <UpdateAuthorContainer onSubmit={ this.submitForm.bind(this) } >
+                <UpdateAuthorTitle>{M.get('authors.updateAuthor')}</UpdateAuthorTitle>
+                <UpdateAuthorName>
+                    <UpdateAuthorLabel>{M.get('authors.authorName')}:</UpdateAuthorLabel>
+                    <UpdateAuthorInput type="text" value={ this.state.name } name='name' onChange={ (e) => this.onChange(e)} />
+                </UpdateAuthorName>
+                <UpdateAuthorAge>
+                    <UpdateAuthorLabel>{M.get('authors.authorAge')}:</UpdateAuthorLabel>
+                    <UpdateAuthorInput type="text" value={ this.state.age } name='age' onChange={ (e) => this.onChange(e)} />
+                </UpdateAuthorAge>
+                <UpdateAuthorSelectDiv>
+                    <UpdateAuthorLabel>{M.get('authors.author')}:</UpdateAuthorLabel>
+                    <UpdateAuthorSelect name='id' onChange={ (e) => this.onChange(e)} >
+                        <option>{M.get('authors.selectAuthor')}</option>
                         { this.displayAuthors() }
-                    </select>
-                </div>
-                <button className="update-author__button">Update author</button>
-            </form>
+                    </UpdateAuthorSelect>
+                </UpdateAuthorSelectDiv>
+                <UpdateAuthorButton>{M.get('authors.updateAuthor')}</UpdateAuthorButton>
+            </UpdateAuthorContainer>
         );
     }
 }

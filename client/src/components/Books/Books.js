@@ -5,6 +5,7 @@ import UpdateBook from "./UpdateBook";
 import { graphql, compose } from "react-apollo";
 import { getBooksQuery, getAuthorsQuery, addBookMutation, deleteBookMutation, updateBookMutation } from "../../queries/queries";
 import PropTypes from "prop-types";
+import { BooksUpdateContainer } from './BooksStyled';
 
 class Books extends Component {
   static propTypes = {
@@ -27,12 +28,12 @@ class Books extends Component {
   render() {
     const { data, getAuthorsQuery, addBookMutation, updateBookMutation } = this.props;
     return (
-      <div className="books">
+      <>
         <BooksList
             data={ data }
             deleteBook={ this.deleteBook }
         />
-        <div className="books__update">
+        <BooksUpdateContainer>
           <AddBook
               addBookMutation={ addBookMutation }
               getAuthorsQuery={ getAuthorsQuery }
@@ -42,8 +43,8 @@ class Books extends Component {
               updateBookMutation={ updateBookMutation }
               getAuthorsQuery={ getAuthorsQuery }
           />
-        </div>
-      </div>
+        </BooksUpdateContainer>
+      </>
     );
   }
 }

@@ -3,6 +3,19 @@ import { graphql } from 'react-apollo';
 import { getBookQuery } from '../../queries/queries';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { Loading,
+         BookDetailsContainer,
+         BookDetailsData,
+         BookName,
+         BookData,
+         HR,
+         BookTitle,
+         BookGenre,
+         BookAuthorName,
+         AuthorBooks,
+         AuthorBooksData,
+         BooksDetailsSpan } from './BookDetailsStyled';
+import M from '../../Messages';
 
 class BookDetails extends Component {
     static propTypes = {
@@ -15,27 +28,27 @@ class BookDetails extends Component {
         console.log("book is: ", book);
         if(book){
             return(
-                <div className="book-details__container">
-                    <div className="book-details">
-                        <div className="book-details__name">{ book.name }</div>
-                        <hr />
-                        <div className="book-details__book-data">
-                            <div className="book-details__book-title"><span>Title:</span>{book.name}</div>
-                            <div className="book-details__book-genre"><span>Genre:</span>{book.genre}</div>
-                            <div className="book-details__book-author__name"><Link to={'/author/' + book.author.id}><span>Author:</span>{book.author.name}</Link></div>
-                        </div>
-                        <hr />
-                        <div className="book-details__name">Authors books list</div>
-                        <div className="book-details__author-books">{ book.author.books.map((book, id) => {
-                            return <div className="book-details__author-book-data" key={id}>{book.name}</div>
+                <BookDetailsContainer>
+                    <BookDetailsData>
+                        <BookName>{ book.name }</BookName>
+                        <HR />
+                        <BookData className="book-details__book-data">
+                            <BookTitle><BooksDetailsSpan>{M.get('books.title')}: </BooksDetailsSpan>{book.name}</BookTitle>
+                            <BookGenre><BooksDetailsSpan>{M.get('books.genre')}: </BooksDetailsSpan>{book.genre}</BookGenre>
+                            <BookAuthorName><Link to={'/author/' + book.author.id}><BooksDetailsSpan>{M.get('books.author')}: </BooksDetailsSpan>{book.author.name}</Link></BookAuthorName>
+                        </BookData>
+                        <HR />
+                        <BookName>{M.get('books.authorsBooksList')}</BookName>
+                        <AuthorBooks>{ book.author.books.map((book, id) => {
+                            return <AuthorBooksData key={id}>{book.name}</AuthorBooksData>
                             })
                         }
-                        </div>
-                    </div>
-                </div>
+                        </AuthorBooks>
+                    </BookDetailsData>
+                </BookDetailsContainer>
             );
         } else {
-           return( <div className="loading-data">Loading ...</div> );
+           return( <Loading>{M.get('books.loading')}</Loading> );
         }
     }
 }

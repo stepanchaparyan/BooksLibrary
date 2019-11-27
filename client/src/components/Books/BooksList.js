@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { BookCard } from './BookCard';
+import { BooksListContainer,
+         BooksListContent,
+         BookTitle,
+         BooksList
+         } from './BooksListStyled';
+import M from '../../Messages';
 
 class BookList extends Component {
     static propTypes = {
@@ -26,14 +32,14 @@ class BookList extends Component {
     }
     render(){
         return(
-            <div className="book-list__container">
-                <div className="book-list__content">
-                    <div className="book-title">BOOKS</div>
-                    <ul className="book-list">
+            <BooksListContainer>
+                <BooksListContent>
+                    <BookTitle>{M.get('books.books')}</BookTitle>
+                    <BooksList>
                         { this.displayBooks() }
-                    </ul>
-                </div>
-            </div>
+                    </BooksList>
+                </BooksListContent>
+            </BooksListContainer>
         );
     }
 }

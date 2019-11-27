@@ -2,6 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import userImage from '../../assets/user.jpeg';
 import { Link } from 'react-router-dom';
+import { AuthorCardContainer,
+         AuthorCardImageContainer,
+         AuthorCardImage,
+         AuthorCardBody,
+         AuthorCardName,
+         AuthorCardAge,
+         AuthorCardBooks } from './AuthorCardStyled';
+import M from '../../Messages';
 
 class AuthorCard extends Component {
     static propTypes = {
@@ -11,16 +19,18 @@ class AuthorCard extends Component {
     render(){
         const { author } = this.props;
         return(
-            <div className="author-card">
-                <div className="author-card__image-div">
-                    <img className="author-card__image" src={userImage} alt="image"/>
-                </div>
-                <div className="author-card__body">
-                    <div className="author-card__name">Name: {author.name}</div>
-                    <div className="author-card__age">Age: {author.age}</div>
-                    <div className="author-card__books"><Link to={'/author/' + author.id} >Books list here</Link></div>
-                </div>
-            </div>
+            <AuthorCardContainer>
+                <AuthorCardImageContainer>
+                    <AuthorCardImage src={ userImage } alt="image"/>
+                </AuthorCardImageContainer>
+                <AuthorCardBody>
+                    <AuthorCardName>{M.get('authors.name')}: { author.name }</AuthorCardName>
+                    <AuthorCardAge>{M.get('authors.age')}: { author.age }</AuthorCardAge>
+                    <AuthorCardBooks>
+                        <Link to={'/author/' + author.id}>{M.get('authors.booksListHere')}</Link>
+                    </AuthorCardBooks>
+                </AuthorCardBody>
+            </AuthorCardContainer>
         );
     }
 }

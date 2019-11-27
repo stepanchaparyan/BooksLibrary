@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
 import { getBooksQuery } from '../../queries/queries';
 import PropTypes from 'prop-types';
+import { AddBookForm,
+         AddBookTitle,
+         AddBookName,
+         AddBookGenre,
+         AddBookAuthor,
+         AddBookLabel,
+         AddBookInput,
+         AddBookSelect,
+         AddBookButton } from './AddBookStyled';
+import M from '../../Messages';
 
 class AddBook extends Component {
     constructor(props){
@@ -40,25 +50,25 @@ class AddBook extends Component {
     }
     render(){
         return(
-            <form className="add-book" onSubmit={ this.submitForm.bind(this) } >
-                <div className="add-book__title">Add Book</div>
-                <div className="add-book__name">
-                    <label className="add-book__label">Book name:</label>
-                    <input className="add-book__input" type="text" onChange={ (e) => this.setState({ name: e.target.value }) } />
-                </div>
-                <div className="add-book__genre">
-                    <label className="add-book__label">Book genre:</label>
-                    <input className="add-book__input" type="text" onChange={ (e) => this.setState({ genre: e.target.value }) } />
-                </div>
-                <div className="add-book__author">
-                    <label className="add-book__label">Book author:</label>
-                    <select className="add-book__select" onChange={ (e) => this.setState({ authorId: e.target.value }) } >
-                        <option className="add-book__option">Select author</option>
+            <AddBookForm onSubmit={ this.submitForm.bind(this) } >
+                <AddBookTitle>{M.get('books.addBook')}</AddBookTitle>
+                <AddBookName>
+                    <AddBookLabel>{M.get('books.bookName')}:</AddBookLabel>
+                    <AddBookInput type="text" onChange={ (e) => this.setState({ name: e.target.value }) } />
+                </AddBookName>
+                <AddBookGenre>
+                    <AddBookLabel>{M.get('books.bookGenre')}:</AddBookLabel>
+                    <AddBookInput type="text" onChange={ (e) => this.setState({ genre: e.target.value }) } />
+                </AddBookGenre>
+                <AddBookAuthor>
+                    <AddBookLabel>{M.get('books.bookAuthor')}:</AddBookLabel>
+                    <AddBookSelect onChange={ (e) => this.setState({ authorId: e.target.value }) } >
+                        <option className="add-book__option">{M.get('books.selectBook')}</option>
                         { this.displayAuthors() }
-                    </select>
-                </div>
-                <button className="add-book__button">Add book</button>
-            </form>
+                    </AddBookSelect>
+                </AddBookAuthor>
+                <AddBookButton>{M.get('books.addBook')}</AddBookButton>
+            </AddBookForm>
         );
     }
 }
