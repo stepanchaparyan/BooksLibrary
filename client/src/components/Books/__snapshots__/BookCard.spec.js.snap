@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BookCard component test with Enzyme renders without crashing 1`] = `
+<styled.div>
+  <styled.img
+    alt="image"
+    src="https://cdn.iconscout.com/icon/free/png-256/avatar-372-456322.png"
+  />
+  <styled.div
+    className="book-card__body"
+  >
+    <styled.div
+      onClick={[Function]}
+    >
+      Name
+      : 
+      Book1
+    </styled.div>
+    <styled.div>
+      Genre
+      : 
+      Drama
+    </styled.div>
+    <Link
+      to="/book/123"
+    >
+      Author data here
+    </Link>
+  </styled.div>
+</styled.div>
+`;

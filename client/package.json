@@ -8,7 +8,10 @@
     "server": "cd ../server && npm run start",
     "build": "rm -rf build && webpack --colors --progress",
     "prod": " NODE_ENV=production npm run build && node ./server/server.prod.js",
-    "eslint-fix": "eslint --fix \"src/**/*.js\""
+    "eslint-fix": "eslint --fix \"src/**/*.js\"",
+    "test": "jest --config ./jest.config.js",
+    "test:watch": "npm run test -- --watch",
+    "updateSnapshot": "jest --updateSnapshot"
   },
   "author": "Stepan Chaparyan",
   "license": "ISC",
@@ -17,12 +20,16 @@
     "apollo-cache-inmemory": "^1.6.3",
     "apollo-link-http": "^1.5.16",
     "browser-sync-webpack-plugin": "^2.2.2",
+    "enzyme-to-json": "^3.4.3",
+    "identity-obj-proxy": "^3.0.0",
+    "jest-enzyme": "^7.1.2",
     "react": "^16.9.0",
     "react-bootstrap": "^1.0.0-beta.14",
     "react-components": "git+https://github.com/stepanchaparyan/react-components.git",
     "react-dom": "^16.9.0",
     "react-responsive-carousel": "^3.1.51",
     "react-spinners": "^0.6.1",
+    "react-test-renderer": "^16.12.0",
     "styled-components": "^4.4.1"
   },
   "devDependencies": {
@@ -39,6 +46,8 @@
     "clean-webpack-plugin": "^3.0.0",
     "console-log-level": "^1.4.1",
     "css-loader": "^3.2.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
     "eslint": "^6.5.1",
     "eslint-loader": "^3.0.2",
     "eslint-plugin-react": "^7.16.0",
@@ -47,6 +56,7 @@
     "graphql": "^0.13.1",
     "history": "^4.10.1",
     "html-webpack-plugin": "^3.2.0",
+    "jest": "^24.9.0",
     "node-sass": "^4.12.0",
     "postcss-loader": "^3.0.0",
     "prop-types": "^15.7.2",
@@ -63,5 +73,5 @@
     "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.8.2",
     "webpack-merge": "^4.2.2"
-  }
+  }  
 }
