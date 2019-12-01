@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import userImage from '../../assets/user.jpeg';
 import { Link } from 'react-router-dom';
 import { AuthorCardContainer,
          AuthorCardImageContainer,
@@ -18,10 +17,11 @@ class AuthorCard extends Component {
 
     render(){
         const { author } = this.props;
+        const photo = 'https://cdn.iconscout.com/icon/free/png-256/avatar-373-456324.png';
         return(
             <AuthorCardContainer>
                 <AuthorCardImageContainer>
-                    <AuthorCardImage src={ userImage } alt="image"/>
+                    <AuthorCardImage src={ author.photo || photo } alt="image"/>
                 </AuthorCardImageContainer>
                 <AuthorCardBody>
                     <AuthorCardName>{M.get('authors.name')}: { author.name }</AuthorCardName>

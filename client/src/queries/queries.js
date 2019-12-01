@@ -5,6 +5,7 @@ const getAuthorsQuery = gql`
         authors {
             name
             age
+            photo
             id
         }
     }
@@ -14,15 +15,16 @@ const getBooksQuery = gql`
     {
         books {
             name
-            genre            
+            genre 
+            photo           
             id
         }
     }
 `;
 
 const addBookMutation = gql`
-    mutation AddBook($name: String!, $genre: String!, $authorId: ID!){
-        addBook(name: $name, genre: $genre, authorId: $authorId){
+    mutation AddBook($name: String!, $genre: String!, $photo: String, $authorId: ID!){
+        addBook(name: $name, genre: $genre, photo: $photo, authorId: $authorId){
             name
             id
         }
@@ -30,8 +32,8 @@ const addBookMutation = gql`
 `;
 
 const addAuthorMutation = gql`
-    mutation AddAuthor($name: String!, $age: Int!){
-        addAuthor(name: $name, age: $age){
+    mutation AddAuthor($name: String!, $age: Int!, $photo: String){
+        addAuthor(name: $name, age: $age, photo: $photo){
             name
             id
         }
@@ -39,8 +41,8 @@ const addAuthorMutation = gql`
 `;
 
 const updateBookMutation = gql`
-    mutation UpdateBook($id: ID!, $name: String!, $genre: String!, $authorId: ID!){
-        updateBook(id: $id, name: $name, genre: $genre, authorId: $authorId){
+    mutation UpdateBook($id: ID!, $name: String!, $genre: String!, $photo: String, $authorId: ID!){
+        updateBook(id: $id, name: $name, genre: $genre, photo: $photo, authorId: $authorId){
             name
             id
         }
@@ -48,8 +50,8 @@ const updateBookMutation = gql`
 `;
 
 const updateAuthorMutation = gql`
-    mutation UpdateAuthor($id: ID!, $name: String!, $age: Int!){
-        updateAuthor(id: $id, name: $name, age: $age){
+    mutation UpdateAuthor($id: ID!, $name: String!, $age: Int!, $photo: String,){
+        updateAuthor(id: $id, name: $name, age: $age, photo: $photo){
             name
             id
         }
@@ -70,10 +72,12 @@ const getBookQuery = gql`
             id
             name
             genre
+            photo
             author {
                 id
                 name
                 age
+                photo
                 books {
                     name
                     id
@@ -89,10 +93,12 @@ const getAuthorQuery = gql`
             id
             name
             age
+            photo
             books {
                 id
                 name
                 genre
+                photo
             }
         }
     }
