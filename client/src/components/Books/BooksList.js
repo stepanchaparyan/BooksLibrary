@@ -6,18 +6,19 @@ import { BooksListContainer,
          BookTitle,
          BooksList
          } from './BooksListStyled';
-import M from '../../Messages';
+import localization from './localization';
 
 class BookList extends Component {
     static propTypes = {
         data: PropTypes.any,
         deleteBook: PropTypes.any,
+        formatMessage: PropTypes.any,
     }
 
     displayBooks(){
-        const { data, deleteBook } = this.props;
+        const { formatMessage, data, deleteBook } = this.props;
         if(data.loading){
-            return( <div>Loading books...</div> );
+            return( <div>{formatMessage(localization.loading)}</div> );
         } else {
             return data.books.map(book => {
                 return(
@@ -25,16 +26,18 @@ class BookList extends Component {
                         book={ book }
                         key={ book.id }
                         onClick={ () => deleteBook(book.id) }
+                        formatMessage={ formatMessage }
                     />
                 );
             })
         }
     }
     render(){
+        const { formatMessage } = this.props;
         return(
             <BooksListContainer>
                 <BooksListContent>
-                    <BookTitle>{M.get('books.books')}</BookTitle>
+                    <BookTitle>{formatMessage(localization.books)}</BookTitle>
                     <BooksList>
                         { this.displayBooks() }
                     </BooksList>

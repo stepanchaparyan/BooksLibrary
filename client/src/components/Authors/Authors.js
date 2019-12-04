@@ -6,26 +6,33 @@ import { graphql, compose } from 'react-apollo';
 import { getAuthorsQuery, addAuthorMutation, updateAuthorMutation } from '../../queries/queries';
 import PropTypes from 'prop-types';
 import { AuthorsAddAndUpdateContainer } from './AuthorsStyled';
+import { injectIntl } from 'react-intl';
 
 class Authors extends Component {
   static propTypes = {
     data: PropTypes.any,
     addAuthorMutation: PropTypes.any,
     updateAuthorMutation: PropTypes.any,
+    intl: PropTypes.any,
   }
 
   render() {
-    const { data, addAuthorMutation, updateAuthorMutation } = this.props;
+    const { data, addAuthorMutation, updateAuthorMutation, intl: { formatMessage } } = this.props;
     return (
         <>
-          <AuthorList data={ data } />
+          <AuthorList
+              data={ data }
+              formatMessage={ formatMessage }
+          />
           <AuthorsAddAndUpdateContainer>
               <AddAuthor
                   addAuthorMutation={ addAuthorMutation }
+                  formatMessage={ formatMessage }
               />
               <UpdateAuthor
                   updateAuthorMutation={ updateAuthorMutation }
                   data={ data }
+                  formatMessage={ formatMessage }
               />
           </AuthorsAddAndUpdateContainer>
         </>
@@ -36,5 +43,5 @@ class Authors extends Component {
 export default compose(
   graphql(getAuthorsQuery),
   graphql(addAuthorMutation, { name: "addAuthorMutation" }),
-  graphql(updateAuthorMutation, { name: 'updateAuthorMutation' })
-)(Authors);
+  graphql(updateAuthorMutation, { name: 'updateAuthorMutation' }),
+  injectIntl)(Authors);

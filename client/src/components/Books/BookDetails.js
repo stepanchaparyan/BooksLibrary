@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { graphql } from 'react-apollo';
+import { graphql, compose } from 'react-apollo';
 import { getBookQuery } from '../../queries/queries';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -15,17 +15,18 @@ import { Loading,
          AuthorBooks,
          AuthorBooksData,
          BooksDetailsSpan } from './BookDetailsStyled';
-import M from '../../Messages';
+import { injectIntl } from "react-intl";
+import localization from './localization';
 
 class BookDetails extends Component {
     static propTypes = {
         data: PropTypes.any,
-        match: PropTypes.any
+        match: PropTypes.any,
+        intl: PropTypes.any,
     }
 
     render(){
-        const { book } = this.props.data;
-        console.log("book is: ", book);
+        const { data: { book }, intl: { formatMessage } } = this.props
         if(book){
             return(
                 <BookDetailsContainer>
@@ -33,12 +34,12 @@ class BookDetails extends Component {
                         <BookName>{ book.name }</BookName>
                         <HR />
                         <BookData className="book-details__book-data">
-                            <BookTitle><BooksDetailsSpan>{M.get('books.title')}: </BooksDetailsSpan>{book.name}</BookTitle>
-                            <BookGenre><BooksDetailsSpan>{M.get('books.genre')}: </BooksDetailsSpan>{book.genre}</BookGenre>
-                            <BookAuthorName><Link to={'/author/' + book.author.id}><BooksDetailsSpan>{M.get('books.author')}: </BooksDetailsSpan>{book.author.name}</Link></BookAuthorName>
+                            <BookTitle><BooksDetailsSpan>{formatMessage(localization.title)}: </BooksDetailsSpan>{book.name}</BookTitle>
+                            <BookGenre><BooksDetailsSpan>{formatMessage(localization.genre)}: </BooksDetailsSpan>{book.genre}</BookGenre>
+                            <BookAuthorName><Link to={'/author/' + book.author.id}><BooksDetailsSpan>{formatMessage(localization.author)}: </BooksDetailsSpan>{book.author.name}</Link></BookAuthorName>
                         </BookData>
                         <HR />
-                        <BookName>{M.get('books.authorsBooksList')}</BookName>
+                        <BookName>{formatMessage(localization.authorsBooksList)}</BookName>
                         <AuthorBooks>{ book.author.books.map((book, id) => {
                             return <AuthorBooksData key={id}>{book.name}</AuthorBooksData>
                             })
@@ -48,17 +49,19 @@ class BookDetails extends Component {
                 </BookDetailsContainer>
             );
         } else {
-           return( <Loading>{M.get('books.loading')}</Loading> );
+           return( <Loading>{formatMessage(localization.loading)}</Loading> );
         }
     }
 }
 
-export default graphql(getBookQuery, {
-    options: (props) => {
-        return {
-            variables: {
-                id: props.match.params.id
+export default compose(
+    graphql(getBookQuery, {
+        options: (props) => {
+            return {
+                variables: {
+                    id: props.match.params.id
+                }
             }
         }
-    }
-})(BookDetails);
+    }),
+    injectIntl)(BookDetails);

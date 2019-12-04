@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { graphql } from 'react-apollo';
+import { graphql, compose } from 'react-apollo';
 import { getAuthorQuery } from '../../queries/queries';
 import PropTypes from 'prop-types';
 import { AuthorDetailsContainer,
@@ -14,31 +14,32 @@ import { AuthorDetailsContainer,
          AuthorDetailsHR,
          AuthorDetailsLoading
          } from './AuthorDetailsStyled';
-import M from '../../Messages';
+import { injectIntl } from "react-intl";
+import localization from './localization';
 
 class AuthorDetails extends Component {
     static propTypes = {
         data: PropTypes.any,
-        match: PropTypes.any
+        match: PropTypes.any,
+        intl: PropTypes.any,
     }
 
     render(){
-        const { author } = this.props.data;
-        console.log("author is: ", author);
+        const { data: { author }, intl: { formatMessage } } = this.props
         if(author){
             return(
                 <AuthorDetailsContainer>
                     <AuthorDetailsContent>
                         <AuthorDetailsName>{ author.name }</AuthorDetailsName>
-                        <AuthorDetailsName>{M.get('authors.booksList')}</AuthorDetailsName>
+                        <AuthorDetailsName>{formatMessage(localization.booksList)}</AuthorDetailsName>
                         <AuthorDetailsHR />
                         <AuthorDetailsBooks>{ author.books.map((book, id) => {
                             return <AuthorDetailsBookData key={id}>
                                         <AuthorDetailsBookTitle>
-                                            <AuthorDetailsBookTitleSpan>{M.get('authors.title')}:</AuthorDetailsBookTitleSpan>{book.name}
+                                            <AuthorDetailsBookTitleSpan>{formatMessage(localization.title)}:</AuthorDetailsBookTitleSpan>{book.name}
                                         </AuthorDetailsBookTitle>
                                         <AuthorDetailsBookGenre>
-                                            <AuthorDetailsBookGenreSpan>{M.get('authors.genre')}:</AuthorDetailsBookGenreSpan>{book.genre}
+                                            <AuthorDetailsBookGenreSpan>{formatMessage(localization.genre)}:</AuthorDetailsBookGenreSpan>{book.genre}
                                         </AuthorDetailsBookGenre>
                                     </AuthorDetailsBookData>
                             })
@@ -48,17 +49,19 @@ class AuthorDetails extends Component {
                 </AuthorDetailsContainer>
             );
         } else {
-           return( <AuthorDetailsLoading>{M.get('authors.loading')}</AuthorDetailsLoading> );
+           return( <AuthorDetailsLoading>{formatMessage(localization.loading)}</AuthorDetailsLoading> );
         }
     }
 }
 
-export default graphql(getAuthorQuery, {
-    options: (props) => {
-        return {
-            variables: {
-                id: props.match.params.id
+export default compose(
+    graphql(getAuthorQuery, {
+        options: (props) => {
+            return {
+                variables: {
+                    id: props.match.params.id
+                }
             }
         }
-    }
-})(AuthorDetails);
+    }),
+    injectIntl)(AuthorDetails);

@@ -11,7 +11,7 @@ import { UpdateAuthorContainer,
          UpdateAuthorInput,
          UpdateAuthorButton
         } from './UpdateAuthorStyled';
-import M from '../../Messages';
+import localization from './localization';
 
 class UpdateAuthor extends Component {
     constructor(props){
@@ -26,12 +26,13 @@ class UpdateAuthor extends Component {
     static propTypes = {
         updateAuthorMutation: PropTypes.any,
         data: PropTypes.any,
+        formatMessage: PropTypes.any,
     }
 
     displayAuthors(){
-        const { data } = this.props;
+        const { data, formatMessage } = this.props;
         if(data.loading){
-            return( <option disabled>Loading authors</option> );
+            return( <option disabled>{formatMessage(localization.loading)}</option> );
         } else {
             return data.authors.map(author => {
                 return( <option key={ author.id } value={author.id}>{ author.name }</option> );
@@ -62,25 +63,26 @@ class UpdateAuthor extends Component {
     }
 
     render(){
+        const { formatMessage } = this.props;
         return(
             <UpdateAuthorContainer onSubmit={ this.submitForm.bind(this) } >
-                <UpdateAuthorTitle>{M.get('authors.updateAuthor')}</UpdateAuthorTitle>
+                <UpdateAuthorTitle>{formatMessage(localization.updateAuthor)}</UpdateAuthorTitle>
                 <UpdateAuthorName>
-                    <UpdateAuthorLabel>{M.get('authors.authorName')}:</UpdateAuthorLabel>
+                    <UpdateAuthorLabel>{formatMessage(localization.authorName)}:</UpdateAuthorLabel>
                     <UpdateAuthorInput type="text" value={ this.state.name } name='name' onChange={ (e) => this.onChange(e)} />
                 </UpdateAuthorName>
                 <UpdateAuthorAge>
-                    <UpdateAuthorLabel>{M.get('authors.authorAge')}:</UpdateAuthorLabel>
+                    <UpdateAuthorLabel>{formatMessage(localization.authorAge)}:</UpdateAuthorLabel>
                     <UpdateAuthorInput type="text" value={ this.state.age } name='age' onChange={ (e) => this.onChange(e)} />
                 </UpdateAuthorAge>
                 <UpdateAuthorSelectDiv>
-                    <UpdateAuthorLabel>{M.get('authors.author')}:</UpdateAuthorLabel>
+                    <UpdateAuthorLabel>{formatMessage(localization.author)}:</UpdateAuthorLabel>
                     <UpdateAuthorSelect name='id' onChange={ (e) => this.onChange(e)} >
-                        <option>{M.get('authors.selectAuthor')}</option>
+                        <option>{formatMessage(localization.selectAuthor)}</option>
                         { this.displayAuthors() }
                     </UpdateAuthorSelect>
                 </UpdateAuthorSelectDiv>
-                <UpdateAuthorButton>{M.get('authors.updateAuthor')}</UpdateAuthorButton>
+                <UpdateAuthorButton>{formatMessage(localization.updateAuthor)}</UpdateAuthorButton>
             </UpdateAuthorContainer>
         );
     }

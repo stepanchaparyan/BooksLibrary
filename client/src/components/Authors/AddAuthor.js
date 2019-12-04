@@ -8,7 +8,7 @@ import { AddAuthorTitle,
          AddAuthorInput,
          AddAuthorButton,
          AddAuthorForm } from './AddAuthorStyled';
-import M from '../../Messages';
+import localization from './localization';
 
 class AddAuthor extends Component {
     constructor(props){
@@ -20,7 +20,8 @@ class AddAuthor extends Component {
     }
 
     static propTypes = {
-        addAuthorMutation: PropTypes.any
+        addAuthorMutation: PropTypes.any,
+        formatMessage: PropTypes.any,
     }
 
     submitForm(e){
@@ -34,18 +35,19 @@ class AddAuthor extends Component {
         });
     }
     render(){
+        const { formatMessage } = this.props;
         return(
             <AddAuthorForm onSubmit={ this.submitForm.bind(this) } >
-                <AddAuthorTitle>{M.get('authors.addAuthor')}</AddAuthorTitle>
+                <AddAuthorTitle>{formatMessage(localization.addAuthor)}</AddAuthorTitle>
                 <AddAuthorName>
-                    <AddAuthorLabel>{M.get('authors.authorName')}:</AddAuthorLabel>
+                    <AddAuthorLabel>{formatMessage(localization.authorName)}:</AddAuthorLabel>
                     <AddAuthorInput type="text" onChange={ (e) => this.setState({ name: e.target.value }) } />
                 </AddAuthorName>
                 <AddAuthorAge>
-                    <AddAuthorLabel>{M.get('authors.authorAge')}:</AddAuthorLabel>
+                    <AddAuthorLabel>{formatMessage(localization.authorAge)}:</AddAuthorLabel>
                     <AddAuthorInput type="text" onChange={ (e) => this.setState({ age: e.target.value }) } />
                 </AddAuthorAge>
-                <AddAuthorButton>{M.get('authors.addAuthor')}</AddAuthorButton>
+                <AddAuthorButton>{formatMessage(localization.addAuthor)}</AddAuthorButton>
             </AddAuthorForm>
         );
     }

@@ -6,34 +6,37 @@ import { AuthorsListContainer,
          AuthorTitle,
          AuthorsList,
          AuthorsListLoading } from './AuthorListStyled';
-import M from '../../Messages';
+import localization from './localization';
 
 class AuthorList extends Component {
     static propTypes = {
-        data: PropTypes.any
+        data: PropTypes.any,
+        formatMessage: PropTypes.any,
     }
 
     displayAuthors(){
-        const data = this.props.data;
+        const { formatMessage, data } = this.props;
         if(data.loading){
-            return( <AuthorsListLoading>{M.get('authors.loadingAuthors')}</AuthorsListLoading> );
+            return( <AuthorsListLoading>{formatMessage(localization.loadingAuthors)}</AuthorsListLoading> );
         } else {
             return data.authors.map(author => {
                 return(
                     <AuthorCard
-                        author={author}
+                        author={ author }
                         key={ author.id }
+                        formatMessage={ formatMessage }
                     />
                 );
             })
         }
     }
     render(){
+        const { formatMessage } = this.props;
         return(
             <>
                 <AuthorsListContainer>
                     <AuthorsListContent>
-                        <AuthorTitle>{M.get('authors.authors')}</AuthorTitle>
+                        <AuthorTitle>{formatMessage(localization.authors)}</AuthorTitle>
                         <AuthorsList>
                             { this.displayAuthors() }
                         </AuthorsList>

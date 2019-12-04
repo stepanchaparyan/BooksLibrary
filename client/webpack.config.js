@@ -46,7 +46,13 @@ const common = {
                 test: /\.mjs$/,
                 include: /node_modules/,
                 type: 'javascript/auto'
+            },            
+            {
+                test: /\.stories\.js?$/,
+                loaders: [require.resolve('@storybook/addon-storysource/loader')],
+                enforce: 'pre',
             }
+             
         ]
     },
     resolve: {

@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { PageNotFoundContainer } from './PageNotFoundStyled';
-import M from '../../Messages';
+import { injectIntl } from 'react-intl';
+import localization from './localization';
 
 class PageNotFound extends Component {
-  render() {
-    return (
-        <PageNotFoundContainer>
-            <h1>{M.get('pageNotFound')}</h1>
-        </PageNotFoundContainer>
+  static propTypes = {
+    intl: PropTypes.any,
+}
+
+render() {
+  const { intl: { formatMessage } } = this.props;
+  return (
+      <PageNotFoundContainer>
+          <h1>{formatMessage(localization.pageNotFound)}</h1>
+      </PageNotFoundContainer>
     );
   }
 }
 
-export { PageNotFound };
+export default injectIntl(PageNotFound);

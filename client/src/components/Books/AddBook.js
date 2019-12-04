@@ -10,7 +10,7 @@ import { AddBookForm,
          AddBookInput,
          AddBookSelect,
          AddBookButton } from './AddBookStyled';
-import M from '../../Messages';
+import localization from './localization';
 
 class AddBook extends Component {
     constructor(props){
@@ -25,12 +25,14 @@ class AddBook extends Component {
     static propTypes = {
         addBookMutation: PropTypes.any,
         getAuthorsQuery: PropTypes.any,
+        formatMessage: PropTypes.any,
     }
 
     displayAuthors(){
+        const { formatMessage } = this.props;
         const data = this.props.getAuthorsQuery;
         if(data.loading){
-            return( <option disabled>Loading authors</option> );
+            return( <option disabled>{formatMessage(localization.loading)}</option> );
         } else {
             return data.authors.map(author => {
                 return( <option key={ author.id } value={author.id}>{ author.name }</option> );
@@ -49,25 +51,26 @@ class AddBook extends Component {
         });
     }
     render(){
+        const { formatMessage } = this.props;
         return(
             <AddBookForm onSubmit={ this.submitForm.bind(this) } >
-                <AddBookTitle>{M.get('books.addBook')}</AddBookTitle>
+                <AddBookTitle>{formatMessage(localization.addBook)}</AddBookTitle>
                 <AddBookName>
-                    <AddBookLabel>{M.get('books.bookName')}:</AddBookLabel>
+                    <AddBookLabel>{formatMessage(localization.bookName)}:</AddBookLabel>
                     <AddBookInput type="text" onChange={ (e) => this.setState({ name: e.target.value }) } />
                 </AddBookName>
                 <AddBookGenre>
-                    <AddBookLabel>{M.get('books.bookGenre')}:</AddBookLabel>
+                    <AddBookLabel>{formatMessage(localization.bookGenre)}:</AddBookLabel>
                     <AddBookInput type="text" onChange={ (e) => this.setState({ genre: e.target.value }) } />
                 </AddBookGenre>
                 <AddBookAuthor>
-                    <AddBookLabel>{M.get('books.bookAuthor')}:</AddBookLabel>
+                    <AddBookLabel>{formatMessage(localization.bookAuthor)}:</AddBookLabel>
                     <AddBookSelect onChange={ (e) => this.setState({ authorId: e.target.value }) } >
-                        <option className="add-book__option">{M.get('books.selectBook')}</option>
+                        <option className="add-book__option">{formatMessage(localization.selectBook)}</option>
                         { this.displayAuthors() }
                     </AddBookSelect>
                 </AddBookAuthor>
-                <AddBookButton>{M.get('books.addBook')}</AddBookButton>
+                <AddBookButton>{formatMessage(localization.addBook)}</AddBookButton>
             </AddBookForm>
         );
     }

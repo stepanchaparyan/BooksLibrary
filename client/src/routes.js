@@ -4,7 +4,7 @@ import Authors from './components/Authors/Authors';
 import Books from './components/Books/Books';
 import AuthorDetails from './components/Authors/AuthorDetails';
 import BookDetails from './components/Books/BookDetails';
-import { PageNotFound } from './components/PageNotFound/PageNotFound';
+import PageNotFound from './components/PageNotFound/PageNotFound';
 
 class Routes extends Component {
   render() {

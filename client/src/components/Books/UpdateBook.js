@@ -10,7 +10,7 @@ import { UpdateBookForm,
          UpdateBookInput,
          UpdateBookSelect,
          UpdateBookButton } from './UpdateBookStyled';
-import M from '../../Messages';
+import localization from './localization';
 
 class UpdateBook extends Component {
     constructor(props){
@@ -27,13 +27,15 @@ class UpdateBook extends Component {
         updateBookMutation: PropTypes.any,
         getAuthorsQuery: PropTypes.any,
         getBooksQuery: PropTypes.any,
-        data: PropTypes.any
+        data: PropTypes.any,
+        formatMessage: PropTypes.any,
     }
 
     displayAuthors(){
         const data = this.props.getAuthorsQuery;
+        const { formatMessage } = this.props;
         if(data.loading){
-            return( <option disabled>Loading authors</option> );
+            return( <option disabled>{formatMessage(localization.loading)}</option> );
         } else {
             return data.authors.map(author => {
                 return( <option key={ author.id } value={author.id}>{ author.name }</option> );
@@ -41,9 +43,9 @@ class UpdateBook extends Component {
         }
     }
     displayBooks(){
-        const { data }= this.props;
+        const { data, formatMessage }= this.props;
         if(data.loading){
-            return( <option disabled>Loading authors</option> );
+            return( <option disabled>{formatMessage(localization.loading)}</option> );
         } else {
             return data.books.map(book => {
                 return( <option key={ book.id } value={book.id}>{ book.name }</option> );
@@ -63,32 +65,33 @@ class UpdateBook extends Component {
         });
     }
     render(){
+        const { formatMessage } = this.props;
         return(
             <UpdateBookForm onSubmit={ this.submitForm.bind(this) } >
-                <UpdateBookTitle>{M.get('books.updateBook')}</UpdateBookTitle>
+                <UpdateBookTitle>{formatMessage(localization.updateBook)}</UpdateBookTitle>
                 <UpdateBookName>
-                    <UpdateBookLabel>{M.get('books.selectBook')}:</UpdateBookLabel>
+                    <UpdateBookLabel>{formatMessage(localization.selectBook)}:</UpdateBookLabel>
                     <UpdateBookSelect onChange={ (e) => this.setState({ bookId: e.target.value }) } >
-                        <option>{M.get('books.selectBook')}</option>
+                        <option>{formatMessage(localization.selectBook)}</option>
                         { this.displayBooks() }
                     </UpdateBookSelect>
                 </UpdateBookName>
                 <UpdateBookName>
-                    <UpdateBookLabel>{M.get('books.bookName')}:</UpdateBookLabel>
+                    <UpdateBookLabel>{formatMessage(localization.bookName)}:</UpdateBookLabel>
                     <UpdateBookInput type="text" onChange={ (e) => this.setState({ name: e.target.value }) } />
                 </UpdateBookName>
                 <UpdateBookGenre>
-                    <UpdateBookLabel>{M.get('books.bookGenre')}:</UpdateBookLabel>
+                    <UpdateBookLabel>{formatMessage(localization.bookGenre)}:</UpdateBookLabel>
                     <UpdateBookInput type="text" onChange={ (e) => this.setState({ genre: e.target.value }) } />
                 </UpdateBookGenre>
                 <UpdateBookAuthor>
-                    <UpdateBookLabel>{M.get('books.bookAuthor')}:</UpdateBookLabel>
+                    <UpdateBookLabel>{formatMessage(localization.bookAuthor)}:</UpdateBookLabel>
                     <UpdateBookSelect onChange={ (e) => this.setState({ authorId: e.target.value }) } >
-                        <option>{M.get('books.selectAuthor')}</option>
+                        <option>{formatMessage(localization.selectAuthor)}</option>
                         { this.displayAuthors() }
                     </UpdateBookSelect>
                 </UpdateBookAuthor>
-                <UpdateBookButton>{M.get('books.updateBook')}</UpdateBookButton>
+                <UpdateBookButton>{formatMessage(localization.updateBook)}</UpdateBookButton>
             </UpdateBookForm>
         );
     }
