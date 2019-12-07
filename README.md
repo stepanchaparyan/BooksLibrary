@@ -6,18 +6,22 @@ Simple web page with graphql and reactjs
 Webpack, EsLint
 Javascript, ES6,7,8
 ReactJS
-Bootstrap, ReactBootstrap, Sass
+Styled Components
 GraphQl, Node, Express
+Jest, Enzhyme
+StoryBook
 ```
 
 # Install guide for development mode
 ```sh
+$ cd  client
 $ npm install
 $ npm start
 ```
 
 # Install guide for production mode
 ```sh
+$ cd client
 $ npm ci
 $ npm run prod
 ```
