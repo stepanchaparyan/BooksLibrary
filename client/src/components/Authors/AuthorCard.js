@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { AuthorCardContainer,
-         AuthorCardImageContainer,
          AuthorCardImage,
          AuthorCardBody,
          AuthorCardName,
@@ -21,9 +20,7 @@ class AuthorCard extends Component {
         const photo = 'https://cdn.iconscout.com/icon/free/png-256/avatar-373-456324.png';
         return(
             <AuthorCardContainer>
-                <AuthorCardImageContainer>
-                    <AuthorCardImage src={ author.photo || photo } alt="image"/>
-                </AuthorCardImageContainer>
+                <AuthorCardImage src={ author.photo || photo } alt="image"/>
                 <AuthorCardBody>
                     <AuthorCardName>{formatMessage(localization.name)}: { author.name }</AuthorCardName>
                     <AuthorCardAge>{formatMessage(localization.age)}: { author.age }</AuthorCardAge>

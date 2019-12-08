@@ -6,11 +6,7 @@ export const AuthorCardContainer = styled.div`
     margin: 10px;
     background-color: rgb(241, 139, 194);
     border: 1px solid #880E4F;
-`;
-
-export const AuthorCardImageContainer = styled.div`
     width: 150px;
-    height: auto;
 `;
 
 export const AuthorCardImage = styled.img`
