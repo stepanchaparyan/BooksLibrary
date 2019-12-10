@@ -5,7 +5,8 @@ import { BookCard } from "./BookCard.js";
 
 const props = {
   book: {name: 'Book1', genre: 'Drama', id: '123'},
-  onClick: () => {},
+  onClick: () => {},  
+  formatMessage: localization => localization.defaultMessage,
 }
 
 function setupShallow() {
@@ -20,5 +21,3 @@ describe('BookCard component test with Enzyme', () => {
   });
 
 });
-
-

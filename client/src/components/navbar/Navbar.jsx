@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { NavbarContainer,
@@ -7,31 +7,31 @@ import { NavbarContainer,
          NavbarLogoContainer,
          NavbarLogo }
 from './navbarStyled';
+import { injectIntl } from 'react-intl';
 
-class Navbar extends Component {
-  static propTypes = {
-    navbarData: PropTypes.object
-  }
+const Navbar = ({navbarLinks, navbarLogo, intl: { formatMessage }}) => {
+  const navbarButtons = navbarLinks.map( (link) => {
+    return  <NavbarButtons key={ link.href }>
+                <Link to={ link.href }>{formatMessage(link.intlMessage.title) }</Link>
+            </NavbarButtons>
+  })
 
-  render () {
-    const { navbarData } = this.props;
-
-    const navbarButtons = navbarData.links.map( (link, i) => {
-      return  <NavbarButtons key={ i }>
-                  <Link to={ link.href }>{ link.title }</Link>
-              </NavbarButtons>
-    })
-    return (
-      <NavbarContainer>
-          <NavbarLogoContainer href="/">
-            <NavbarLogo src={ navbarData.imageSrc } alt="Logo" />
-          </NavbarLogoContainer>
-          <NavbarButtonsContainer>
-            { navbarButtons }
-          </NavbarButtonsContainer>
-      </NavbarContainer>
-    );
-  }
+  return (
+    <NavbarContainer>
+        <NavbarLogoContainer >
+          <NavbarLogo src={ navbarLogo } alt="Logo" />
+        </NavbarLogoContainer>
+        <NavbarButtonsContainer>
+          { navbarButtons }
+        </NavbarButtonsContainer>
+    </NavbarContainer>
+  );
 }
 
-export { Navbar };
+Navbar.propTypes = {
+  navbarLinks: PropTypes.array,
+  navbarLogo: PropTypes.string,
+  intl: PropTypes.any,
+}
+
+export default injectIntl(Navbar);

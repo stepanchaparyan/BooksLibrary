@@ -1,8 +1,7 @@
 import React from "react";
-import renderer from "react-test-renderer";
 import toJson from 'enzyme-to-json';
 import { shallow } from 'enzyme';
-import { PageNotFound } from "./PageNotFound.js";
+import PageNotFound from "./PageNotFound.js";
 
 function setupShallow() {
   const wrapper = shallow(<PageNotFound />);

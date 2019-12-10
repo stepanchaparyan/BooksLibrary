@@ -1,5 +1,7 @@
 {
     "pageNotFound": "Էջը չի գտնվել",
+    "navbar.authors.title": "Հեղինակներ",
+    "navbar.books.title": "Գրքեր",
     "authors.author": "Հեղինակ",
     "authors.authors": "Հեղինակներ",
     "authors.loadingAuthors": "",

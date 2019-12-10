@@ -33,6 +33,6 @@ const AuthorCardWrapperIntlWithoutImage = () => {
 };
 
 
-storiesOf('Task', module)
-  .add('default', () => <AuthorCardWrapperIntlDefault />)
-  .add('without image', () => <AuthorCardWrapperIntlWithoutImage />)
+storiesOf('AuthorCard', module)
+  .add('with image from prop', () => <AuthorCardWrapperIntlDefault />)
+  .add('with image from default', () => <AuthorCardWrapperIntlWithoutImage />)

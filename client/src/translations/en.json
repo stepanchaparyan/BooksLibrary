@@ -1,5 +1,7 @@
 {
     "pageNotFound": "Page Not Found",
+    "navbar.authors.title": "Authors",
+    "navbar.books.title": "Books",
     "authors.author": "Author",
     "authors.authors": "AUTHORS",
     "authors.loadingAuthors": "Loading authors...",
