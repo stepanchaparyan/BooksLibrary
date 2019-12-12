@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { AuthorCard } from './AuthorCard';
 import { AuthorsListContainer,
@@ -8,14 +8,9 @@ import { AuthorsListContainer,
          AuthorsListLoading } from './AuthorListStyled';
 import localization from './localization';
 
-class AuthorList extends Component {
-    static propTypes = {
-        data: PropTypes.any,
-        formatMessage: PropTypes.any,
-    }
+const AuthorList = ({ formatMessage, data }) => {
 
-    displayAuthors(){
-        const { formatMessage, data } = this.props;
+    const displayAuthors = () => {
         if(data.loading){
             return( <AuthorsListLoading>{formatMessage(localization.loadingAuthors)}</AuthorsListLoading> );
         } else {
@@ -30,21 +25,23 @@ class AuthorList extends Component {
             })
         }
     }
-    render(){
-        const { formatMessage } = this.props;
-        return(
-            <>
-                <AuthorsListContainer>
-                    <AuthorsListContent>
-                        <AuthorTitle>{formatMessage(localization.authors)}</AuthorTitle>
-                        <AuthorsList>
-                            { this.displayAuthors() }
-                        </AuthorsList>
-                    </AuthorsListContent>
-                </AuthorsListContainer>
-            </>
-        );
-    }
+    return(
+        <>
+            <AuthorsListContainer>
+                <AuthorsListContent>
+                    <AuthorTitle>{formatMessage(localization.authors)}</AuthorTitle>
+                    <AuthorsList>
+                        { displayAuthors() }
+                    </AuthorsList>
+                </AuthorsListContent>
+            </AuthorsListContainer>
+        </>
+    );
+}
+
+AuthorList.propTypes = {
+    data: PropTypes.any,
+    formatMessage: PropTypes.any,
 }
 
 export default AuthorList;
